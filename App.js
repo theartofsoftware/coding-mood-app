@@ -1,52 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useRef, useEffect } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Audio } from 'expo-av';
 import pianoHorror from './assets/mixkit-piano-horror-671.mp3';
+import FlashingView from './FlashingView';
 
 const soundObject = new Audio.Sound();
 
-const FlashingView = (props) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current
-
-  useEffect(() => {
-    const flash = () => {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(
-            fadeAnim,
-            {
-              toValue: 1,
-              duration: 1000,
-              useNativeDriver: false,
-            }
-          ),
-          Animated.timing(
-            fadeAnim,
-            {
-              toValue: 0,
-              duration: 1000,
-              useNativeDriver: false,
-            }
-          ),
-        ])
-      ).start();
-    };
-
-    flash();
-  }, [fadeAnim])
-
-  return (
-    <Animated.View
-      style={{
-        ...props.style,
-        opacity: fadeAnim,
-      }}
-    >
-      {props.children}
-    </Animated.View>
-  );
-}
 
 export default function App() {
   useEffect(() => {
