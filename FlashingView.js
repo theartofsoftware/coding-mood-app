@@ -35,7 +35,10 @@ function FlashingView(props) {
   return (
     <Animated.View
       style={{
-        ...props.style,
+        flex: 1,
+        backgroundColor: props.color,
+        alignItems: 'center',
+        justifyContent: 'center',
         opacity: fadeAnim,
       }}
     >
@@ -45,7 +48,7 @@ function FlashingView(props) {
 }
 
 FlashingView.propTypes = {
-  style: PropTypes.object,
+  color: PropTypes.string,
   children: PropTypes.object,
 };
 

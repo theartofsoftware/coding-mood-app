@@ -1,15 +1,27 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Button } from 'react-native';
 import { Audio } from 'expo-av';
 import pianoHorror from './assets/mixkit-piano-horror-671.mp3';
 import FlashingView from './FlashingView';
 
 const soundObject = new Audio.Sound();
 
+const toggleColor = (prevColor, setFlashColor) => {
+  setFlashColor((prevColor === "#f00") ? "transparent" : "#f00");
+};
 
 export default function App() {
+  const [ flashColor, setFlashColor ] = useState('#f00');
+
   useEffect(() => {
     const playSound = async () => {
+      await Audio.setAudioModeAsync(
+        {
+          shouldDuckAndroid: true,
+          playThroughEarpieceAndroid: false,
+        },
+      );
+
       try {
         await soundObject.loadAsync(pianoHorror);
         await soundObject.playAsync();
@@ -25,7 +37,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <FlashingView style={styles.animated}>
+      <FlashingView color={flashColor}>
+        <Button
+          onPress={() => toggleColor(flashColor, setFlashColor)}
+          title="TOGGLE COLORS"
+        />
       </FlashingView>
     </View>
   );
@@ -37,11 +53,5 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'center',
     backgroundColor: '#000',
-  },
-  animated: {
-    flex: 1,
-    backgroundColor: '#f00',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
