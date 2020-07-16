@@ -6,8 +6,8 @@ function sleep(ms) {
 }
 
 const SOUND_MAP = {
-  spooky: pianoHorror,
   upbeat: upbeatSong,
+  spooky: pianoHorror,
 };
 
 class SoundPlayer {
@@ -43,7 +43,7 @@ class SoundPlayer {
     while (volume < 1) {
       await this.currentSound.setVolumeAsync(Math.min(1, volume + 0.1));
       volume += 0.1
-      await sleep(250);
+      await sleep(150);
     }
   }
 
@@ -69,7 +69,7 @@ class SoundPlayer {
     while (volume > 0) {
       await this.currentSound.setVolumeAsync(Math.max(0, volume - 0.1));
       volume -= 0.1
-      await sleep(250);
+      await sleep(150);
     }
   }
 
