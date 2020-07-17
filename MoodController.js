@@ -1,14 +1,18 @@
 class MoodController {
-  constructor(url) {
+  constructor(url, reconnectDelay=1000) {
     this.url = url;
     this.ws = null;
     this.toggleMode = null;
+    this.reconnectDelay = reconnectDelay;
   }
 
   connect() {
     this.ws = new WebSocket(this.url);
     this.ws.onopen = () => console.log("Websocket opened");
-    this.ws.onclose = () => console.log("Closing websocket");
+    this.ws.onclose = () => {
+      console.log("Websocket closed. Will try to re-connect");
+      setTimeout(() => this.connect(), this.reconnectDelay);
+    };
     this.ws.onmessage = e => this.onMessage(e.data);
   }
 
