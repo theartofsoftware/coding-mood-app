@@ -36,10 +36,13 @@ class MoodController {
 
     if (state === "working") {
       this.setFlashColor("#000");
-      await this.soundPlayer.toggleSong();
+      await this.soundPlayer.playSong('upbeat');
     } else if (state === "broken") {
       this.setFlashColor("#f00");
-      await this.soundPlayer.toggleSong();
+      await this.soundPlayer.playSong('spooky');
+    } else if (state === "fixing") {
+      this.setFlashColor("#ffa500");
+      await this.soundPlayer.playSong('epic');
     }
   }
 

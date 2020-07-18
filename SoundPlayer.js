@@ -1,5 +1,6 @@
 import pianoHorror from './assets/mixkit-piano-horror-671.mp3';
 import upbeatSong from './assets/terrors-vennart.mp3';
+import epicMusic from './assets/epic-music.mp3';
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -8,6 +9,7 @@ function sleep(ms) {
 const SOUND_MAP = {
   upbeat: upbeatSong,
   spooky: pianoHorror,
+  epic: epicMusic,
 };
 
 class SoundPlayer {
@@ -32,6 +34,7 @@ class SoundPlayer {
       this._sounds[name] = sound;
 
       if (!this.currentSound) {
+        // Defaults to playing the first song defined in SOUND_MAP
         this.currentSound = sound;
       }
     }
@@ -56,10 +59,9 @@ class SoundPlayer {
     this.currentSound = this._sounds[name];
   }
 
-  async toggleSong() {
+  async playSong(songName) {
     await this.pause();
-    const nextSong = (this.currentSound == this._sounds.spooky) ? 'upbeat' : 'spooky';
-    this._setCurrentSong(nextSong);
+    this._setCurrentSong(songName);
     await this.start();
   }
 
