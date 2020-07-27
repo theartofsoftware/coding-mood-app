@@ -1,5 +1,5 @@
 import pianoHorror from './assets/mixkit-piano-horror-671.mp3';
-import upbeatSong from './assets/terrors-vennart.mp3';
+import upbeatSong from './assets/ash-wednesday.mp3';
 import epicMusic from './assets/epic-music.mp3';
 
 function sleep(ms) {
