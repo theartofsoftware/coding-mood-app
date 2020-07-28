@@ -5,8 +5,10 @@ import SoundPlayer from './SoundPlayer';
 import FlashingView from './FlashingView';
 import MoodController from './MoodController';
 
+const WEBSOCKET_URI = "192.168.1.108:5000"  // Change to your server IP
+
 const soundPlayer = new SoundPlayer(Audio);
-const moodController = new MoodController("ws://192.168.1.189:5000/ws", soundPlayer);
+const moodController = new MoodController(`ws://${WEBSOCKET_URI}/ws`, soundPlayer);
 
 export default function App() {
   const [flashColor, setFlashColor] = useState('transparent');
