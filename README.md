@@ -1,5 +1,7 @@
 # Coding Mood Mobile App
 
+*It plays horror music when your code breaks, and upbeat music when it works.*
+
 This is the code for the mobile app used in the Coding Mood solution.
 
 Writing code is a very jarring experience. Regardless of whether or not your code works or everything is broken, the same music plays. We don't let this happen in movies, so why let it happen when we code? My app, "Coding Mood" solves this problem.
